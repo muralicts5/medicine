@@ -45,7 +45,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 		token = token.substring(7);
 
 		if (token != null) {
-			Claims user = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary("pharmacysystem"))
+			Claims user = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary("zzeresdsfwererere"))
 					.parseClaimsJws(token).getBody();
 
 			if (user != null) {

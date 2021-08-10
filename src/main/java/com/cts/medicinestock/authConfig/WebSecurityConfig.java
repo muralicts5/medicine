@@ -30,7 +30,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		System.out.println("inside the config");
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/login").permitAll().and().authorizeRequests()
-				.antMatchers("/home").permitAll().anyRequest().authenticated().and()
+					.antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**",
+                "/v3/api-docs/**",
+                "/swagger-ui/**").permitAll().and()		
+				.authorizeRequests().antMatchers("/home").permitAll().anyRequest().authenticated().and()
 				.addFilter(new AuthorizationFilter(authenticationManager())).exceptionHandling()
 				.authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
